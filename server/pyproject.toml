@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "WINAK-server"
+version = "0.1.0"
+description = "The server that functions as a backend to the WINAK website"
+authors = ["Laurens De Wachter <laurens@winak.be>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+djangorestframework = "^3.15.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
