@@ -2,10 +2,20 @@ services:
   server:
     build:
       context: server
-      args:
-        SERVER_WORKERS: ${SERVER_WORKERS}
     env_file:
       - .env
     ports:
-      - "1965:8000"
+      - "${SERVER_PORT}:8000"
+    restart: unless-stopped
+    depends_on:
+      - server-db
+
+  server-db:
+    image: postgres:13-alpine
+    environment:
+      - POSTGRES_DB=${SERVER_DB_NAME}
+      - POSTGRES_USER=${SERVER_DB_USER}
+      - POSTGRES_PASSWORD=${SERVER_DB_PASSWORD}
+    volumes:
+      - server-db-data:/var/lib/postgresql/data
     restart: unless-stopped

@@ -120,6 +120,29 @@ files = [
 ]
 
 [[package]]
+name = "psycopg"
+version = "3.1.19"
+description = "PostgreSQL database adapter for Python"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "psycopg-3.1.19-py3-none-any.whl", hash = "sha256:dca5e5521c859f6606686432ae1c94e8766d29cc91f2ee595378c510cc5b0731"},
+    {file = "psycopg-3.1.19.tar.gz", hash = "sha256:92d7b78ad82426cdcf1a0440678209faa890c6e1721361c2f8901f0dccd62961"},
+]
+
+[package.dependencies]
+typing-extensions = ">=4.1"
+tzdata = {version = "*", markers = "sys_platform == \"win32\""}
+
+[package.extras]
+binary = ["psycopg-binary (==3.1.19)"]
+c = ["psycopg-c (==3.1.19)"]
+dev = ["black (>=24.1.0)", "codespell (>=2.2)", "dnspython (>=2.1)", "flake8 (>=4.0)", "mypy (>=1.4.1)", "types-setuptools (>=57.4)", "wheel (>=0.37)"]
+docs = ["Sphinx (>=5.0)", "furo (==2022.6.21)", "sphinx-autobuild (>=2021.3.14)", "sphinx-autodoc-typehints (>=1.12)"]
+pool = ["psycopg-pool"]
+test = ["anyio (>=3.6.2,<4.0)", "mypy (>=1.4.1)", "pproxy (>=2.7)", "pytest (>=6.2.5)", "pytest-cov (>=3.0)", "pytest-randomly (>=3.5)"]
+
+[[package]]
 name = "sqlparse"
 version = "0.5.0"
 description = "A non-validating SQL parser."
@@ -178,4 +201,4 @@ standard = ["colorama (>=0.4)", "httptools (>=0.5.0)", "python-dotenv (>=0.13)",
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "69bfcbcc61c71c509ecbfeff713181ee1e7bb95e267cce1a9191227cf4882884"
+content-hash = "09f1193ed30a464e6a4615a215234a986f1343f049dfb0d1092d31578be68d48"

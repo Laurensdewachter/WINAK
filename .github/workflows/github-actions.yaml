@@ -4,6 +4,19 @@ on: [push, pull_request]
 jobs:
   django:
     runs-on: ubuntu-24.04
+    env:
+      SERVER_DB_NAME: "WINAK_server_db"
+      SERVER_DB_USER: "WINAK_admin"
+    services:
+      postgres:
+        image: postgres:13
+        env:
+          POSTGRES_DB: ${{ env.SERVER_DB_NAME }}
+          POSTGRES_USER: ${{ env.SERVER_DB_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.SERVER_DB_PASSWORD }}
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
       # Checkout repository
       - name: Checkout
@@ -33,9 +46,23 @@ jobs:
         run: |
           cd server
           poetry install --no-interaction --no-root
+      # Migrate database
+      - name: Migrate database
+        run: |
+          cd server
+          source .venv/bin/activate
+          python server/manage.py migrate
+        env:
+          SERVER_DB_PASSWORD: ${{ secrets.SERVER_DB_PASSWORD }}
+          SERVER_DB_HOST: localhost
+          SERVER_DB_PORT: 5432
       # Run tests
       - name: Run tests
         run: |
           cd server
           source .venv/bin/activate
           python server/manage.py test
+        env:
+          SERVER_DB_PASSWORD: ${{ secrets.SERVER_DB_PASSWORD }}
+          SERVER_DB_HOST: localhost
+          SERVER_DB_PORT: 5432
