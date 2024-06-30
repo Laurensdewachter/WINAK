@@ -1,0 +1,11 @@
+services:
+  server:
+    build:
+      context: server
+      args:
+        SERVER_WORKERS: ${SERVER_WORKERS}
+    env_file:
+      - .env
+    ports:
+      - "1965:8000"
+    restart: unless-stopped
