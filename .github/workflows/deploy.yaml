@@ -1,0 +1,27 @@
+name: Deploy
+run-name: ${{ github.actor }} - Deploy
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Deploy to server
+        uses: appleboy/ssh-action@v1.0.3
+        env:
+          GIT_URL: git@github.com:Laurensdewachter/WINAK.git
+          DIR_NAME: WINAK
+        with:
+          host: ${{ vars.SSH_HOST }}
+          username: ${{ vars.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          envs: GIT_URL, DIR_NAME
+          script: |
+            [ -d $DIR_NAME ] || git clone $GIT_URL $DIR_NAME
+            cd $DIR_NAME
+            git checkout main
+            git pull
+            docker compose build
+            docker compose up -d
