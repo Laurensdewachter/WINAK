@@ -5,7 +5,7 @@ FROM python:3.10-alpine
 WORKDIR /server
 
 # Install psycopg
-RUN apk update && apk add postgresql-dev gcc python3-dev musl-dev
+RUN apk update && apk add postgresql-dev gcc python3-dev musl-dev libffi-dev
 
 # Install poetry
 RUN pip install poetry

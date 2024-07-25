@@ -1,10 +1,10 @@
 services:
   server:
-    container_name: server-dev
+    container_name: server
     build:
       context: server
     env_file:
-      - env_files/dev.env
+      - env_files/prod.env
     secrets:
       - db_password
     ports:
@@ -14,19 +14,19 @@ services:
       - database
 
   database:
-    container_name: database-dev
+    container_name: database
     image: postgres:13-alpine
     environment:
       - POSTGRES_DB=${SERVER_DB_NAME}
       - POSTGRES_USER=${SERVER_DB_USER}
-      - POSTGRES_PASSWORD=${SERVER_DB_PASSWORD}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
     volumes:
-      - database-dev-data:/var/lib/postgresql/data
+      - database-data:/var/lib/postgresql/data
     restart: unless-stopped
 
 volumes:
-  database-dev-data:
+  database-data:
 
 secrets:
   db_password:
-    environment: "SERVER_DB_PASSWORD"
+    environment: "DB_PASSWORD"

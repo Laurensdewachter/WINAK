@@ -74,13 +74,17 @@ WSGI_APPLICATION = "server.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
+try:
+    with open("/run/secrets/db_password", "r") as f:
+        db_password = f.read().strip()
+except FileNotFoundError:
+    db_password = os.environ.get("SERVER_DB_PASSWORD")
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": os.environ.get("SERVER_DB_NAME"),
         "USER": os.environ.get("SERVER_DB_USER"),
-        "PASSWORD": os.environ.get("SERVER_DB_PASSWORD"),
+        "PASSWORD": db_password,
         "HOST": os.environ.get("SERVER_DB_HOST"),
         "PORT": os.environ.get("SERVER_DB_PORT"),
     }

@@ -18,5 +18,5 @@ Voor een goede deployement moeten volgende variabelen worden ingesteld in de rep
 ## Manueel
 Het project kan ook manueel gedployed worden met:
 ``` bash
-docker compose up -d --build
+docker compose -f compose.prod.yaml up -d --build
 ```
