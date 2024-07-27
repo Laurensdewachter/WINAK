@@ -1,0 +1,40 @@
+services:
+  server:
+    container_name: server-dev
+    build:
+      context: server
+    env_file:
+      - env_files/dev.env
+    secrets:
+      - db_password
+    ports:
+      - "${SERVER_PORT}:8000"
+    restart: unless-stopped
+    depends_on:
+      - database
+
+  database:
+    container_name: database-dev
+    image: postgres:13-alpine
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - database-dev-data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  client:
+    container_name: client-dev
+    build:
+      context: client
+    ports:
+      - "${CLIENT_PORT}:3000"
+    restart: unless-stopped
+
+volumes:
+  database-dev-data:
+
+secrets:
+  db_password:
+    environment: "SERVER_DB_PASSWORD"
