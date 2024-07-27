@@ -31,10 +31,13 @@ SECRET_KEY = secret_key
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("SERVER_DEBUG", False)
 
-ALLOWED_HOSTS = [
-    "winak.be",
-    "winak-test.be",
-]
+if DEBUG:
+    ALLOWED_HOSTS = ["*"]
+else:
+    ALLOWED_HOSTS = [
+        "winak.be",
+        "winak-test.be",
+    ]
 
 CSFR_COOKIE_SECURE = not os.environ.get("SERVER_DEBUG", False)
 SESSION_COOKIE_SECURE = not os.environ.get("SERVER_DEBUG", False)
@@ -43,6 +46,7 @@ SESSION_COOKIE_SECURE = not os.environ.get("SERVER_DEBUG", False)
 # Application definition
 
 INSTALLED_APPS = [
+    "users",
     "rest_framework",
     "django.contrib.admin",
     "django.contrib.auth",

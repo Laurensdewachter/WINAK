@@ -20,4 +20,4 @@ RUN poetry install --no-root
 COPY . .
 
 # Run the server
-CMD cd server && poetry run python manage.py migrate && poetry run python manage.py runserver 0.0.0.0:8000
+CMD cd server && poetry run python manage.py migrate && poetry run gunicorn server.asgi:application -k uvicorn.workers.UvicornWorker -w $SERVER_WORKERS

@@ -9,6 +9,8 @@ services:
       - db_password
     ports:
       - "${SERVER_PORT}:8000"
+    volumes:
+      - ./server/server:/server/server
     restart: unless-stopped
     depends_on:
       - database
@@ -20,6 +22,8 @@ services:
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
+    ports:
+      - "${DB_PORT}:5432"
     volumes:
       - database-dev-data:/var/lib/postgresql/data
     restart: unless-stopped
@@ -37,4 +41,4 @@ volumes:
 
 secrets:
   db_password:
-    environment: "SERVER_DB_PASSWORD"
+    environment: "DB_PASSWORD"

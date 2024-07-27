@@ -3,6 +3,7 @@ services:
     container_name: server
     build:
       context: server
+      dockerfile: Dockerfile.prod
     env_file:
       - env_files/prod.env
     secrets:
