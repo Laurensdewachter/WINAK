@@ -34,6 +34,8 @@ services:
       context: client
     ports:
       - "${CLIENT_PORT}:3000"
+    volumes:
+      - ./client/src:/client/src
     restart: unless-stopped
 
 volumes:
