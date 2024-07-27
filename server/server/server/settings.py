@@ -31,7 +31,10 @@ SECRET_KEY = secret_key
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("SERVER_DEBUG", False)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "winak.be",
+    "winak-test.be",
+]
 
 
 # Application definition
