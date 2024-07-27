@@ -14,11 +14,12 @@ jobs:
           GIT_URL: git@github.com:Laurensdewachter/WINAK.git
           DIR_NAME: WINAK
           DB_PASSWORD: ${{ secrets.SERVER_DB_PASSWORD }}
+          SERVER_SECRET_KEY: ${{ secrets.SERVER_SECRET_KEY }}
         with:
           host: ${{ vars.SSH_HOST }}
           username: ${{ vars.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          envs: GIT_URL, DIR_NAME, DB_PASSWORD
+          envs: GIT_URL, DIR_NAME, DB_PASSWORD, SERVER_SECRET_KEY
           script_stop: true
           script: |
             [ -d $DIR_NAME ] || git clone $GIT_URL $DIR_NAME
@@ -26,5 +27,6 @@ jobs:
             git checkout main
             git pull
             export DB_PASSWORD=$DB_PASSWORD
+            export SERVER_SECRET_KEY=$SERVER_SECRET_KEY
             docker compose -f compose.prod.yaml build --force-rm --no-cache --compress
             docker compose -f compose.prod.yaml up -d
