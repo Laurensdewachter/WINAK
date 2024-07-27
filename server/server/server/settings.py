@@ -36,6 +36,9 @@ ALLOWED_HOSTS = [
     "winak-test.be",
 ]
 
+CSFR_COOKIE_SECURE = not os.environ.get("SERVER_DEBUG", False)
+SESSION_COOKIE_SECURE = not os.environ.get("SERVER_DEBUG", False)
+
 
 # Application definition
 
