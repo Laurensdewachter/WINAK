@@ -4,7 +4,7 @@ services:
     build:
       context: server
     env_file:
-      - env_files/dev.env
+      - env_files/dev/server.env
     secrets:
       - db_password
     ports:
@@ -32,6 +32,8 @@ services:
     container_name: client-dev
     build:
       context: client
+    env_file:
+      - env_files/dev/client.env
     ports:
       - "${CLIENT_PORT}:3000"
     volumes:

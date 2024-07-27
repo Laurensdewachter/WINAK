@@ -5,7 +5,7 @@ services:
       context: server
       dockerfile: Dockerfile.prod
     env_file:
-      - env_files/prod.env
+      - env_files/prod/server.env
     secrets:
       - db_password
       - server_key
@@ -32,7 +32,7 @@ services:
       context: .
       dockerfile: caddy/Dockerfile
     env_file:
-      - env_files/prod.env
+      - env_files/prod/server.env
     ports:
       - "80:80"
       - "443:443"
