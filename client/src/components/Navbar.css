@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+.navbar {
+  background-color: #e07713;
+}
+
+.navbar-brand {
+  background-color: #242424;
+  padding-left: 15px;
+  padding-right: 75px;
+  clip-path: polygon(0 0, 100% 0, 130px 100%, 0 100%);
+}
+
+.navbar-collapse {
+  position: relative;
+  top: 15px;
+}
+
+.nav-link {
+  margin-bottom: 5px;
+  padding: 2px 0px;
+  padding-left: 5px;
+  color: #242424;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  transition: text-shadow 0.15s ease;
+  display: inline-block;
+}
+
+.nav-link:hover {
+  color: #242424;
+  text-shadow:
+    0 0 1px #242424,
+    0 0 1px #242424;
+}
+
+.btn-login {
+  background-color: #242424;
+  color: #e07713;
+  text-align: center;
+  border-radius: 3px;
+}
+
+.btn-login:hover {
+  color: #e07713;
+  text-shadow:
+    0 0 1px #e07713,
+    0 0 1px #e07713;
+}
+
+.btn-register {
+  border: solid 1px #242424;
+  border-radius: 3px;
+  text-align: center;
+}

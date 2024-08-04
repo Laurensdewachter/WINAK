@@ -1,4 +1,7 @@
 import { useRouteError } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import CustomNavbar from "../components/Navbar";
 
 export default function ErrorPage() {
   const error = useRouteError();
@@ -6,10 +9,8 @@ export default function ErrorPage() {
 
   return (
     <div id="error-page">
-      <h1>Onbestaande pagina</h1>
-      <p>
-        Het lijkt erop dat je op een onbestaande pagina terecht bent gekomen.
-      </p>
+      <CustomNavbar />
+      <Container>Unknown page</Container>
     </div>
   );
 }
