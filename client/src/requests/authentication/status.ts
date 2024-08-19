@@ -12,14 +12,14 @@ function checkLoginStatus(): boolean {
 
     // Access token is valid
     if (decoded.exp === undefined) return false;
-    if (decoded.exp * 1000 < Date.now()) {
+    if (decoded.exp * 1000 > Date.now()) {
       return true;
     }
     // Check if refresh token is expired
     else if (refreshToken) {
       const decoded = jwtDecode(refreshToken);
       if (decoded.exp === undefined) return false;
-      if (decoded.exp * 1000 < Date.now()) {
+      if (decoded.exp * 1000 > Date.now()) {
         // Refresh access token
         axios
           .post(import.meta.env.VITE_SERVER_HOST + "/auth/token/refresh", {
