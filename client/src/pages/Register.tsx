@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import CustomNavbar from "../components/Navbar.tsx";
-import register from "../functions/register.ts";
+import register from "../requests/authentication/register.ts";
 
 function RegisterPage() {
   const [username, setUsername] = useState<string>("");

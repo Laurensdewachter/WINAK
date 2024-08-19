@@ -1,4 +1,5 @@
-import axios from "axios";
+import axiosInstance from "../axios";
+import login from "./login";
 
 function register(
   username: string,
@@ -7,10 +8,10 @@ function register(
   firstName: string,
   lastName: string
 ) {
-  const url = import.meta.env.VITE_SERVER_HOST;
-
-  axios
-    .post(url + "/users/register", {
+  localStorage.removeItem("WINAK_auth_token");
+  localStorage.removeItem("WINAK_refresh_token");
+  axiosInstance
+    .post("/users/register", {
       username: username,
       email: email,
       password: password,
@@ -18,7 +19,7 @@ function register(
       last_name: lastName,
     })
     .then(function (response) {
-      console.log(response);
+      login(username, password);
     })
     .catch(function (error) {
       console.error(error);
