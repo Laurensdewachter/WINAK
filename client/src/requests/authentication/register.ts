@@ -22,11 +22,9 @@ function register(
       login(username, password);
     })
     .catch(function (error) {
-      console.error(error);
+      console.log(error);
+      throw error;
     })
-    .finally(function () {
-      console.log("Request finished");
-    });
 }
 
 export default register;

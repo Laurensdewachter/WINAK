@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import CustomNavbar from "../components/Navbar.tsx";
 import register from "../requests/authentication/register.ts";
+import { useNavigate } from "react-router-dom";
 
 function RegisterPage() {
   const [username, setUsername] = useState<string>("");
@@ -12,9 +13,16 @@ function RegisterPage() {
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
 
+  const navigate = useNavigate();
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    register(username, email, password, firstName, lastName);
+    try {
+      register(username, email, password, firstName, lastName);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
