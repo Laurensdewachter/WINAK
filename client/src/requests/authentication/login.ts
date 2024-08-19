@@ -1,6 +1,8 @@
 import axiosInstance from "../axios";
 
 function login(username: string, password: string) {
+  localStorage.removeItem("access_token");
+  localStorage.removeItem("refresh_token");
   axiosInstance
     .post("/auth/token", {
       username: username,
@@ -10,8 +12,8 @@ function login(username: string, password: string) {
       const newAuthToken = response.data.access;
       const newRefreshToken = response.data.refresh;
 
-      localStorage.setItem("WINAK_auth_token", newAuthToken);
-      localStorage.setItem("WINAK_refresh_token", newRefreshToken);
+      localStorage.setItem("access_token", newAuthToken);
+      localStorage.setItem("refresh_token", newRefreshToken);
     })
     .catch(function (error) {
       console.error(error);

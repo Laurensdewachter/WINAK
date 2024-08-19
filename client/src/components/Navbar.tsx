@@ -1,8 +1,10 @@
+import checkLoginStatus from "../requests/authentication/status";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import "./Navbar.css";
 
 function CustomNavbar() {
+  const loginStatus = checkLoginStatus();
   return (
     <Navbar expand="lg" className="p-0">
       <Navbar.Brand href="/" className="m-0 me-4 py-3">

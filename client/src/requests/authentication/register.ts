@@ -8,8 +8,8 @@ function register(
   firstName: string,
   lastName: string
 ) {
-  localStorage.removeItem("WINAK_auth_token");
-  localStorage.removeItem("WINAK_refresh_token");
+  localStorage.removeItem("access_token");
+  localStorage.removeItem("refresh_token");
   axiosInstance
     .post("/users/register", {
       username: username,
