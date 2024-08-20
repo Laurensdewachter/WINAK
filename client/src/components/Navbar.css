@@ -27,7 +27,9 @@
   font-weight: 400;
   font-size: 20px;
   transition: text-shadow 0.15s ease;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  text-align: center;
 }
 
 .nav-link:hover {
