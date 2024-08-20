@@ -27,7 +27,7 @@ function checkLoginStatus(): boolean {
           .post(import.meta.env.VITE_SERVER_HOST + "/auth/token/refresh", {
             refresh: refreshToken,
           })
-          .then(function (response) {
+          .then((response) => {
             const newAccessToken = response.data.access;
             const newRefreshToken = response.data.refresh;
 
@@ -36,7 +36,7 @@ function checkLoginStatus(): boolean {
             localStorage.setItem("refresh_token", newRefreshToken);
             return true;
           })
-          .catch(function (error) {
+          .catch((error) => {
             console.error(error);
             return false;
           });

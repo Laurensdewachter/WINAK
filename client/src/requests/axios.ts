@@ -42,7 +42,7 @@ axiosInstance.interceptors.response.use(
           .post(import.meta.env.VITE_SERVER_HOST + "/auth/token/refresh", {
             refresh: refreshToken,
           })
-          .then(function (response) {
+          .then((response) => {
             const newAccessToken = response.data.access;
             const newRefreshToken = response.data.refresh;
 
@@ -55,7 +55,7 @@ axiosInstance.interceptors.response.use(
             // Retry the original request
             return axios(originalRequest);
           })
-          .catch(function (error) {
+          .catch((error) => {
             // TODO: Handle refresh token error
             console.error(error);
           });

@@ -18,10 +18,10 @@ function register(
       first_name: firstName,
       last_name: lastName,
     })
-    .then(function (response) {
+    .then((response) => {
       login(username, password);
     })
-    .catch(function (error) {
+    .catch((error) => {
       console.log(error);
       throw error;
     })

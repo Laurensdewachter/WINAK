@@ -4,15 +4,25 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import CustomNavbar from "../components/Navbar.tsx";
 import login from "../requests/authentication/login.ts";
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const navigate = useNavigate();
+
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    login(username, password);
-  };
+
+    login(username, password)
+      .then(() => {
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 
   return (
     <>
