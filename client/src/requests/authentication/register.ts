@@ -1,7 +1,7 @@
 import axiosInstance from "../axios";
 import login from "./login";
 
-function register(
+async function register(
   username: string,
   email: string,
   password: string,
@@ -10,7 +10,8 @@ function register(
 ) {
   localStorage.removeItem("access_token");
   localStorage.removeItem("refresh_token");
-  axiosInstance
+
+  return axiosInstance
     .post("/users/register", {
       username: username,
       email: email,
@@ -18,11 +19,10 @@ function register(
       first_name: firstName,
       last_name: lastName,
     })
-    .then((response) => {
+    .then(() => {
       login(username, password);
     })
     .catch((error) => {
-      console.log(error);
       throw error;
     })
 }

@@ -17,12 +17,14 @@ function RegisterPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      register(username, email, password, firstName, lastName);
-      navigate("/");
-    } catch (error) {
-      console.log(error);
-    }
+
+    register(username, email, password, firstName, lastName)
+      .then(() => {
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (

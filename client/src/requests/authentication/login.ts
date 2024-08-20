@@ -3,6 +3,7 @@ import axios from "axios";
 async function login(username: string, password: string) {
   localStorage.removeItem("access_token");
   localStorage.removeItem("refresh_token");
+
   return axios
     .post(import.meta.env.VITE_SERVER_HOST + "/auth/token", {
       username: username,
