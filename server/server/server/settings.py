@@ -34,16 +34,17 @@ DEBUG = os.environ.get("SERVER_DEBUG", False)
 
 if DEBUG:
     ALLOWED_HOSTS = ["*"]
-    CORS_ALLOW_ALL_ORIGINS = True
+    CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
+    CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"]
 else:
     ALLOWED_HOSTS = [
         "winak.be",
         "winak-test.be",
     ]
     CORS_ALLOWED_ORIGINS = ["http://winak.be", "http://winak-test.be"]
+    CSRF_TRUSTED_ORIGINS = ["http://winak.be", "http://winak-test.be"]
 
-CSFR_COOKIE_SECURE = not os.environ.get("SERVER_DEBUG", False)
-SESSION_COOKIE_SECURE = not os.environ.get("SERVER_DEBUG", False)
+CORS_ALLOW_CREDENTIALS = True
 
 APPEND_SLASH = False
 
@@ -96,9 +97,12 @@ TEMPLATES = [
 WSGI_APPLICATION = "server.wsgi.application"
 
 REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
-    )
+    ),
 }
 
 # Database
