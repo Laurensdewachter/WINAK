@@ -1,33 +1,49 @@
-import checkLoginStatus from "../requests/authentication/status";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
+import { useState } from "react";
+import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { Person } from "react-bootstrap-icons";
+
+import checkLoginStatus from "../requests/authentication/status";
 import "./Navbar.css";
 
 function CustomNavbar() {
-  const loggedIn = checkLoginStatus();
+  const [loggedIn, setLoggedIn] = useState<boolean>(checkLoginStatus());
 
-  function getUserComponents() {
+  const handleLogout = () => {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
+    localStorage.removeItem("username");
+    setLoggedIn(false);
+  };
+
+  function getUserComponent() {
     if (loggedIn) {
       // User is logged in
       return (
-        <Nav className="ms-4 me-4 mb-4 me-lg-1 mb-lg-0">
-          <Nav.Link href="/" className="me-3 mb-1 btn-login">
+        <Nav className="mx-4 mb-4 mb-lg-0">
+          <Nav.Link href="/" className="mx-1 my-1 my-lg-0 btn-login">
             Tuyaux
           </Nav.Link>
-          <Nav.Link href="/account" className="me-3 btn-account">
-          <Person className="me-1 icon-person"/>Mijn Account
-          </Nav.Link>
+          <NavDropdown
+            title=<>
+              <Person className="me-1 icon-person" />
+              {localStorage.getItem("username")}
+            </>
+            id="basic-nav-dropdown"
+            className="mx-1 my-1 my-lg-0"
+          >
+            <NavDropdown.Item href="/account">Account</NavDropdown.Item>
+            <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+          </NavDropdown>
         </Nav>
       );
     } else {
       // User is not logged in
       return (
-        <Nav className="me-1 mb-4 mb-lg-0">
-          <Nav.Link href="/login" className="me-3 mb-1 btn-login">
+        <Nav className="mx-4 mb-4 mb-lg-0">
+          <Nav.Link href="/login" className="mx-1 my-1 my-lg-0 btn-login">
             login
           </Nav.Link>
-          <Nav.Link href="/register" className="me-3 btn-register">
+          <Nav.Link href="/register" className="mx-1 my-1 my-lg-0 btn-register">
             Registreer
           </Nav.Link>
         </Nav>
@@ -49,7 +65,7 @@ function CustomNavbar() {
           <Nav.Link href="/partnerships">Partnerships</Nav.Link>
           <Nav.Link href="/contact">Contact</Nav.Link>
         </Nav>
-        {getUserComponents()}
+        {getUserComponent()}
       </Navbar.Collapse>
     </Navbar>
   );

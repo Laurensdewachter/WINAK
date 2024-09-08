@@ -15,6 +15,7 @@ async function login(username: string, password: string) {
 
       localStorage.setItem("access_token", newAuthToken);
       localStorage.setItem("refresh_token", newRefreshToken);
+      localStorage.setItem("username", username);
     })
     .catch((error) => {
       // Handle wrong username/password
