@@ -6,3 +6,4 @@ repos:
         additional_dependencies: 
           - black == 22.6.0
           - usort == 1.0.4
+        exclude: 'migrations/'

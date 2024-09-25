@@ -5,7 +5,7 @@ async function login(username: string, password: string) {
   localStorage.removeItem("refresh_token");
 
   return axios
-    .post(import.meta.env.VITE_SERVER_HOST + "/auth/token", {
+    .post(import.meta.env.VITE_SERVER_HOST + "/users/token", {
       username: username,
       password: password,
     })
@@ -19,12 +19,7 @@ async function login(username: string, password: string) {
     })
     .catch((error) => {
       // Handle wrong username/password
-      if (
-        error.response &&
-        error.response.status === 401 &&
-        error.response.data.detail ===
-          "No active account found with the given credentials"
-      ) {
+      if (error.response && error.response.status === 401) {
         throw new Error("Wrong username or password");
       }
       // Handle other errors

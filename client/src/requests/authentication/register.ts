@@ -1,4 +1,4 @@
-import getAxiosInstance from "../axios";
+import axiosInstance from "../axios";
 import login from "./login";
 
 async function register(
@@ -10,8 +10,6 @@ async function register(
 ) {
   localStorage.removeItem("access_token");
   localStorage.removeItem("refresh_token");
-
-  const axiosInstance = await getAxiosInstance();
 
   return axiosInstance
     .post("/users/register", {
