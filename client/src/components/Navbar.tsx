@@ -3,15 +3,14 @@ import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { Person } from "react-bootstrap-icons";
 
 import checkLoginStatus from "../requests/authentication/status";
+import logout from "../requests/authentication/logout";
 import "./Navbar.css";
 
 function CustomNavbar() {
   const [loggedIn, setLoggedIn] = useState<boolean>(checkLoginStatus());
 
   const handleLogout = () => {
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("refresh_token");
-    localStorage.removeItem("username");
+    logout()
     setLoggedIn(false);
   };
 

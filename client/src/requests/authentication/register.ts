@@ -1,5 +1,6 @@
 import axiosInstance from "../axios";
 import login from "./login";
+import logout from "./logout";
 
 async function register(
   username: string,
@@ -8,8 +9,9 @@ async function register(
   firstName: string,
   lastName: string
 ) {
-  localStorage.removeItem("access_token");
-  localStorage.removeItem("refresh_token");
+  if (localStorage.getItem("access_token")) {
+    logout();
+  }
 
   return axiosInstance
     .post("/users/register", {

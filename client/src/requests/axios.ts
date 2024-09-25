@@ -40,7 +40,7 @@ axiosInstance.interceptors.response.use(
       if (refreshToken) {
         try {
           const response = await axios.post(
-            import.meta.env.VITE_SERVER_HOST + "/users/refresh",
+            import.meta.env.VITE_SERVER_HOST + "/users/token/refresh",
             { refresh: refreshToken }
           );
           const newAuthToken = response.data.access;
