@@ -37,6 +37,13 @@
     0 0 1px #242424;
 }
 
+.nav-link:focus {
+  color: #242424;
+  text-shadow:
+    0 0 1px #242424,
+    0 0 1px #242424;
+}
+
 .btn-login {
   background-color: #242424;
   color: #e07713;
@@ -45,6 +52,13 @@
 }
 
 .btn-login:hover {
+  color: #e07713;
+  text-shadow:
+    0 0 1px #e07713,
+    0 0 1px #e07713;
+}
+
+.btn-login:focus {
   color: #e07713;
   text-shadow:
     0 0 1px #e07713,
