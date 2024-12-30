@@ -38,6 +38,7 @@ services:
       - "${CLIENT_PORT}:3000"
     volumes:
       - ./client/src:/client/src
+      - ./client/public:/client/public
     restart: unless-stopped
 
 volumes:

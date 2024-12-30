@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+.img-custom {
+  height: calc(100vh - 132px);
+  width: 50vw;
+  overflow: hidden;
+  object-fit: cover;
+  clip-path: polygon(0 0, 75% 0, 100% 100%, 0 100%);
+}
+
+.form-container {
+  padding-left: 150px;
+  padding-right: 50px;
+  padding-top: 150px;
+}
+
+.title-container {
+  width: 50%;
+  text-align: left;
+  color: #242424;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-size: 65px;
+}
+
+.form-label {
+  color: #242424;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.form-control {
+  width: 50%;
+  background-color: #ededed;
+  border-bottom: 5px solid #e07713;
+  border-radius: 5px;
+}
+
+.form-control:focus {
+  background-color: #ededed;
+  box-shadow: none;
+  border-color: #242424;
+}
+
+.form-select {
+  width: 50%;
+  background-color: #ededed;
+  border-bottom: 5px solid #e07713;
+  border-radius: 5px;
+}
+
+.circle-active {
+    background-color: #e07713;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.circle-inactive {
+    background-color: #ededed;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-number {
+    color: #242424;
+    font-size: 25px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    text-align: center;
+    display: inline-block;
+}
+
+.submit-button, .submit-button:hover, .submit-button:focus {
+    background-color: #e07713;
+    border: none;
+    color: #242424;
+    font-size: 20px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+}
+
+.prev-button, .prev-button:hover, .prev-button:focus {
+    background-color: #ededed;
+    border: none;
+    color: #242424;
+    font-size: 20px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+}
