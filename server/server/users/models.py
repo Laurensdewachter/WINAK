@@ -1,8 +1,13 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
-class CustomUser(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    number = models.IntegerField(null=True)
-    tuyaux_access = models.BooleanField(default=False)
+class User(AbstractUser):
+    STUDIES = [
+        ("W", "Wiskunde"),
+        ("I", "Informatica"),
+        ("F", "Fysica"),
+        ("A", "Andere"),
+    ]
+    study = models.CharField(max_length=1, choices=STUDIES)
+    email = models.EmailField(unique=True)
