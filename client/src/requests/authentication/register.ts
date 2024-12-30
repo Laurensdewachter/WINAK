@@ -7,11 +7,21 @@ async function register(
   email: string,
   password: string,
   firstName: string,
-  lastName: string
+  lastName: string,
+  study: string
 ) {
   if (localStorage.getItem("access_token")) {
     logout();
   }
+
+  const study_dict: {[id: string]: string} = {
+    "Wiskunde": "W",
+    "Informatica": "I",
+    "Fysica": "F",
+    "Andere": "A",
+  };
+
+  study = study_dict[study];
 
   return axiosInstance
     .post("/users/register", {
@@ -20,13 +30,14 @@ async function register(
       password: password,
       first_name: firstName,
       last_name: lastName,
+      study: study,
     })
     .then(() => {
       login(username, password);
     })
     .catch((error) => {
       throw error;
-    })
+    });
 }
 
 export default register;

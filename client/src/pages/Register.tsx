@@ -53,9 +53,9 @@ function RegisterPage() {
       return;
     } else {
       // Submit the form to the server
-      register(username, email, password, firstName, lastName)
+      register(username, email, password, firstName, lastName, study)
         .then(() => {
-          navigate("/");
+          navigate("");
         })
         .catch((error) => {
           navigate("/register?stage=1");
