@@ -1,8 +1,4 @@
-www.winak-test.be {
-    redir https://winak-test.be{uri}
-}
-
-winak-test.be {
+winak.laurens-dewachter.be {
 	root * /usr/share/caddy
     file_server
 
